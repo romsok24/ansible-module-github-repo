@@ -46,7 +46,7 @@ EXAMPLES = '''
 '''
 
 
-api_url = "https://api.github.ibm.com"
+api_url = "https://api.github.**********.com"
 
 
 def github_repo_present(data):
