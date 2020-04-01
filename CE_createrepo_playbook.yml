@@ -5,7 +5,7 @@
   vars:
     github_access_token: "{{ github_access_token }}"
   tasks:
-    - name: A CE repo creation for the need of https://github.**********.com/Continuous-Engineering/Ansible/
+    - name: A CE repo creation for the need ofv ************************
       github_repo:
         github_access_token: "{{ github_access_token }}"
         name: "{{ item.name }}"
@@ -27,16 +27,6 @@
       register: result
       tags: RepoCreate
 
-    # - name: >
-    #     Test a github repo: {{ repo_name }} deletion from: {{ repo_owner }}
-    #     organization using ans module
-    #   github_repo:
-    #     github_access_token: "{{ github_access_token }}"
-    #     name: "{{ repo_name }}"
-    #     owner: "{{ repo_owner }}"
-    #     state: absent
-    #   register: result
-    #   tags: RepoDelete
 
     - name: Debug task
       debug:
