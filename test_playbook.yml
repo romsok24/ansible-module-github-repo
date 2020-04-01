@@ -1,0 +1,44 @@
+---
+- name: Testing playbook
+  hosts: localhost
+  gather_facts: false
+  vars:
+    github_access_token: "{{ github_access_token }}"
+  tasks:
+    - name: A CE repo creation for the need of https://github.ibm.com/Continuous-Engineering/Ansible/
+      github_repo:
+        github_access_token: "{{ github_access_token }}"
+        name: "{{ item.name }}"
+        organization: "{{ repo_owner }}"
+        collaborators: "{{ item.collaborators }}"
+        description: "{{ item.description }}"
+        private: false
+        has_issues: true
+        has_wiki: false
+        has_downloads: false
+        has_projects: false
+        auto_init: true
+        topics: ['community']   # still needs to be tested
+        no_pr_tomerge: 3
+        account_level: organization
+        state: present
+      with_items:
+        - {name: "{{ repo_name }}", description: "{{ repo_descr }}", collaborators: "{{ collab_name }}"}
+      register: result
+      tags: RepoCreate
+
+    # - name: >
+    #     Test a github repo: {{ repo_name }} deletion from: {{ repo_owner }}
+    #     organization using ans module
+    #   github_repo:
+    #     github_access_token: "{{ github_access_token }}"
+    #     name: "{{ repo_name }}"
+    #     owner: "{{ repo_owner }}"
+    #     state: absent
+    #   register: result
+    #   tags: RepoDelete
+
+    - name: Debug task
+      debug:
+        var: result
+      tags: Debug
