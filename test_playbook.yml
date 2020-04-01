@@ -5,7 +5,7 @@
   vars:
     github_access_token: "{{ github_access_token }}"
   tasks:
-    - name: A CE repo creation for the need of https://github.**********.com/Continuous-Engineering/Ansible/
+    - name: A CE repo creation for the need of *******************
       github_repo:
         github_access_token: "{{ github_access_token }}"
         name: "{{ item.name }}"
